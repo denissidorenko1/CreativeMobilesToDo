@@ -1,0 +1,83 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld Задач" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "variations" : {
+            "plural" : {
+              "one" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld Задача"
+                }
+              },
+              "other" : {
+                "stringUnit" : {
+                  "state" : "new",
+                  "value" : "%lld Задач"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "needs_review",
+                  "value" : "%lld Задач"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld Задачи" : {
+
+    },
+    "network.error.code.4xx" : {
+
+    },
+    "network.error.code.5xx" : {
+
+    },
+    "network.error.code.400" : {
+
+    },
+    "network.error.code.401" : {
+
+    },
+    "network.error.code.404" : {
+
+    },
+    "network.error.code.unknown" : {
+
+    },
+    "network.error.parsing" : {
+
+    },
+    "network.error.request.%@" : {
+
+    },
+    "network.error.retryError" : {
+
+    },
+    "network.error.session" : {
+
+    },
+    "Введите название" : {
+
+    },
+    "Задачи" : {
+
+    },
+    "Поделиться" : {
+
+    },
+    "Редактировать" : {
+
+    },
+    "Удалить" : {
+
+    }
+  },
+  "version" : "1.0"
+}

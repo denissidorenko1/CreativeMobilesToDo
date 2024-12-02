@@ -1,0 +1,15 @@
+xcassets:
+  inputs:
+    - CreativeMobilesToDo/Sources/Resources/Colors/ColorAsset.xcassets
+  outputs:
+    - templateName: swift5
+      output: CreativeMobilesToDo/Sources/Resources/Colors/Colors.swift
+      params:
+        enumName: Colors
+  inputs:
+    - CreativeMobilesToDo/Sources/Resources/Images/Assets.xcassets
+  outputs:
+    - templateName: swift5
+      output: CreativeMobilesToDo/Sources/Resources/Images/Images.swift
+      params:
+        enumName: Images
