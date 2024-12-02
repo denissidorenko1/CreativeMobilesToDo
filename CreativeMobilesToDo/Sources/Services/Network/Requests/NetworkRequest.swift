@@ -3,7 +3,7 @@ import Foundation
 // MARK: - HTTPMethod
 enum HTTPMethod: String {
     case get
-    
+
     var name: String {
         rawValue.uppercased()
     }

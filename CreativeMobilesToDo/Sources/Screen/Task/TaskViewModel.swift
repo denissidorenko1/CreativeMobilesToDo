@@ -3,18 +3,18 @@ import SwiftUI
 
 // MARK: - TaskViewModel
 final class TaskViewModel: ObservableObject {
-    
+
     // MARK: - Dependencies
     let persistenceService: ToDoPersistenceService = ToDoPersistenceService.shared
-    
+
     // MARK: - Public properties
     @Published var title: String
-    @Published var description : String
+    @Published var description: String
     @Published var creationDate: Date
     @Published var item: ToDoItem?
 
     // MARK: - Private properties
-    
+
     // MARK: - Initializer
     init(
         title: String = "",
@@ -35,7 +35,7 @@ final class TaskViewModel: ObservableObject {
         }
 
     }
-    
+
     // MARK: - Public methods
     func saveItem() {
         if let item = item {
@@ -57,6 +57,6 @@ final class TaskViewModel: ObservableObject {
             persistenceService.addItem(item: newItem)
         }
     }
-    
+
     // MARK: - Private methods
 }

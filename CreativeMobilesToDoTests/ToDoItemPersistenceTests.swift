@@ -3,48 +3,47 @@ import Combine
 import CoreData
 @testable import CreativeMobilesToDo
 
-
 final class ToDoItemPersistenceTests: XCTestCase {
     private var service = ToDoPersistenceService.shared
-    
+
     override func setUpWithError() throws {
         var cancellable: Set<AnyCancellable> = []
         let deletionExpectation = XCTestExpectation()
-        
-        let _ = service.operationCompletion
+
+        _ = service.operationCompletion
             .sink { _ in
                 deletionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.deleteAllItems()
         wait(for: [deletionExpectation], timeout: 5)
     }
 
     override func tearDownWithError() throws {
-        
+
     }
-    
+
     func testBatchAdd() {
         var cancellable: Set<AnyCancellable> = []
         let items: [ToDoItem] = [
             ToDoItem(isDone: true, title: "title1", itemDescription: "description1", creationDate: .now),
             ToDoItem(isDone: false, title: "title2", itemDescription: "description2", creationDate: .now),
             ToDoItem(isDone: true, title: "title3", itemDescription: "description3", creationDate: .now),
-            ToDoItem(isDone: false, title: "title4", itemDescription: "description4", creationDate: .now),
+            ToDoItem(isDone: false, title: "title4", itemDescription: "description4", creationDate: .now)
         ]
 
         let batchAdditionExpectation = XCTestExpectation()
-        
-        let _ = service.operationCompletion
+
+        _ = service.operationCompletion
             .sink { _ in
                 batchAdditionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.batchAdd(items: items)
         wait(for: [batchAdditionExpectation])
-        
+
         let fetchExpectation = XCTestExpectation()
         try? service.fetchItems(completion: { [weak self] fetchedItems in
             let mappedItems = self?.service.toList(persistenceItemList: fetchedItems)
@@ -53,7 +52,6 @@ final class ToDoItemPersistenceTests: XCTestCase {
         })
         wait(for: [fetchExpectation], timeout: 5)
     }
-    
 
     func testUpdateItem() {
         var cancellable: Set<AnyCancellable> = []
@@ -64,24 +62,24 @@ final class ToDoItemPersistenceTests: XCTestCase {
             itemDescription: "description",
             creationDate: .now
         )
-        
+
         let additionExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 additionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.addItem(item: item)
         wait(for: [additionExpectation], timeout: 1)
-        
+
         let editExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 editExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         let editedItem: ToDoItem = ToDoItem(
             id: item.id,
             isDone: !item.isDone,
@@ -89,11 +87,10 @@ final class ToDoItemPersistenceTests: XCTestCase {
             itemDescription: "another description",
             creationDate: Date(timeIntervalSince1970: 1)
         )
-        
+
         service.editItem(item: editedItem)
         wait(for: [editExpectation], timeout: 5)
-        
-        
+
         let fetchExpectation = XCTestExpectation()
         try? service.fetchItems(completion: { fetchedItems in
             XCTAssertTrue(fetchedItems.count == 1)
@@ -107,8 +104,7 @@ final class ToDoItemPersistenceTests: XCTestCase {
         })
         wait(for: [fetchExpectation], timeout: 5)
     }
-    
-    
+
     func testDeleteItem() {
         var cancellable: Set<AnyCancellable> = []
         let item: ToDoItem = ToDoItem(
@@ -118,28 +114,27 @@ final class ToDoItemPersistenceTests: XCTestCase {
             itemDescription: "description",
             creationDate: .now
         )
-        
+
         let additionExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 additionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.addItem(item: item)
         wait(for: [additionExpectation], timeout: 1)
-        
+
         let deletionExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 deletionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.deleteItem(item: item)
         wait(for: [deletionExpectation], timeout: 5)
-        
-        
+
         let fetchExpectation = XCTestExpectation()
         try? service.fetchItems(completion: { fetchedItems in
             XCTAssertTrue(fetchedItems.count == 0)
@@ -147,7 +142,7 @@ final class ToDoItemPersistenceTests: XCTestCase {
         })
         wait(for: [fetchExpectation], timeout: 5)
     }
-    
+
     func testToggleItem() {
         var cancellable: Set<AnyCancellable> = []
         let item: ToDoItem = ToDoItem(
@@ -157,28 +152,27 @@ final class ToDoItemPersistenceTests: XCTestCase {
             itemDescription: "description",
             creationDate: .now
         )
-        
+
         let additionExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 additionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.addItem(item: item)
         wait(for: [additionExpectation], timeout: 1)
-        
+
         let toggleExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 toggleExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         try? service.toggleItem(item: item)
         wait(for: [toggleExpectation], timeout: 5)
-        
-        
+
         let fetchExpectation = XCTestExpectation()
         try? service.fetchItems(completion: { fetchedItems in
             XCTAssertTrue(fetchedItems.count == 1)
@@ -202,15 +196,15 @@ final class ToDoItemPersistenceTests: XCTestCase {
             creationDate: .now
         )
         let additionExpectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 additionExpectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.addItem(item: item)
         wait(for: [additionExpectation], timeout: 1)
-        
+
         let fetchExpectation = XCTestExpectation()
         try? service.fetchItems(completion: { fetchedItems in
             XCTAssertTrue(fetchedItems.count == 1)
@@ -223,21 +217,21 @@ final class ToDoItemPersistenceTests: XCTestCase {
         })
         wait(for: [fetchExpectation], timeout: 5)
     }
-    
+
     func testNotification() async throws {
         var cancellable: Set<AnyCancellable> = []
         let expectation = XCTestExpectation()
-        let _ = service.operationCompletion
+        _ = service.operationCompletion
             .sink { _ in
                 XCTAssertTrue(true)
                 expectation.fulfill()
             }
             .store(in: &cancellable)
-        
+
         service.addItem(item: ToDoItem(isDone: false, title: "", itemDescription: "", creationDate: .now))
         await fulfillment(of: [expectation])
     }
-    
+
     func testEmptyStorage() {
         let expectation = XCTestExpectation()
         try? service.fetchItems { fetchedItems in
@@ -247,4 +241,3 @@ final class ToDoItemPersistenceTests: XCTestCase {
         wait(for: [expectation])
     }
 }
-

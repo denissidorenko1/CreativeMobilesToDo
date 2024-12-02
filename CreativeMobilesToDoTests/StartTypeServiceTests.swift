@@ -17,7 +17,7 @@ final class StartTypeServiceTests: XCTestCase {
         let expectedFirstLaunchType = AppLaunchType.firstTimeLaunch
         XCTAssertTrue(expectedFirstLaunchType == service.launchType)
     }
-    
+
     func testSecondLaunch() throws {
         service = nil
         service = StartTypeService()

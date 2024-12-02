@@ -3,12 +3,12 @@ import SwiftUI
 // MARK: - TaskView
 struct TaskView: View {
     @StateObject private var viewModel: TaskViewModel
-    
+
     init(item: ToDoItem?) {
         let viewModel = TaskViewModel(item: item)
         _viewModel = StateObject(wrappedValue: viewModel)
     }
-    
+
     var body: some View {
         ZStack {
             background
@@ -34,14 +34,14 @@ extension TaskView {
             .font(.system(size: 34).bold())
             .padding(.bottom, 8)
     }
-    
+
     private var date: some View {
         Text(viewModel.creationDate.slashFormatted(date: .numeric, time: .omitted))
             .font(.system(size: 12))
             .foregroundStyle(Colors.customStroke.swiftUIColor)
             .padding(.bottom, 16)
     }
-    
+
     private var description: some View {
         TextEditor(text: $viewModel.description)
             .scrollContentBackground(.hidden)
@@ -51,7 +51,7 @@ extension TaskView {
             .lineLimit(10)
 
     }
-    
+
     private var background: some View {
         Colors.customBlack.swiftUIColor
             .ignoresSafeArea()

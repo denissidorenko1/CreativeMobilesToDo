@@ -4,12 +4,12 @@ import Combine
 // MARK: - ToDoListViewModel
 @MainActor
 final class ToDoListViewModel: ObservableObject {
-    
+
     // MARK: - Dependencies
     private let networkService: ToDoNetworkingService = ToDoNetworkingService.shared
     private let persistenceService: ToDoPersistenceService = ToDoPersistenceService.shared
     private let userDefaultsService: StartTypeService = StartTypeService.shared
-    
+
     // MARK: - Public properties
     @Published var toDoList: [ToDoItem] = []
     @Published var selectedTodoItem: ToDoItem?
@@ -21,7 +21,7 @@ final class ToDoListViewModel: ObservableObject {
             }
         }
     }
-    
+
     var filteredItems: [ToDoItem] {
         guard !searchText.isEmpty else {
             itemsShownCount = toDoList.count
@@ -31,13 +31,12 @@ final class ToDoListViewModel: ObservableObject {
         itemsShownCount = filtered.count
         return filtered.sorted { $0.creationDate > $1.creationDate}
     }
-    
+
     var itemsShownCount = 0
-    
 
     // MARK: - Private properties
     private var cancellables = Set<AnyCancellable>()
-    
+
     // MARK: - Initializer
     init() {
         persistenceService.operationCompletion
@@ -46,25 +45,24 @@ final class ToDoListViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     // MARK: - Public methods
     func addNewItem(item: ToDoItem) {
         persistenceService.addItem(item: item)
     }
-    
+
     func deleteItem(item: ToDoItem) {
         persistenceService.deleteItem(item: item)
     }
-    
+
     func editItem(item: ToDoItem) {
         persistenceService.editItem(item: item)
     }
-    
+
     func toggleStatus(for item: ToDoItem) {
         try? persistenceService.toggleItem(item: item)
     }
-    
-    
+
     func fetch() {
         switch userDefaultsService.launchType {
         case .firstTimeLaunch:
@@ -73,7 +71,7 @@ final class ToDoListViewModel: ObservableObject {
             fetchFromPersistence()
         }
     }
-    
+
     // MARK: - Private methods
     private func fetchFromPersistence() {
         try? persistenceService.fetchItems { [weak self] entityArray in
@@ -85,7 +83,7 @@ final class ToDoListViewModel: ObservableObject {
             }
         }
     }
-    
+
     private func fetchFromNetworkAndSave() {
         Task {
             do {

@@ -2,9 +2,9 @@ import SwiftUI
 
 // MARK: - ToDoItemPreview
 struct ToDoItemPreview: View {
-    
+
     var toDoItem: ToDoItem
-    
+
     var body: some View {
         ZStack(alignment: .leading) {
             background
@@ -24,7 +24,7 @@ extension ToDoItemPreview {
     private var background: some View {
         Colors.customGray.swiftUIColor
     }
-    
+
     private var title: some View {
         Text(toDoItem.title)
             .padding(.bottom, 6)
@@ -32,7 +32,7 @@ extension ToDoItemPreview {
             .foregroundStyle(toDoItem.isDone ? .customStroke : .customWhite)
             .strikethrough(toDoItem.isDone)
     }
-    
+
     private var description: some View {
         Text(toDoItem.itemDescription)
             .padding(.bottom, 6)
@@ -40,7 +40,7 @@ extension ToDoItemPreview {
             .foregroundStyle(toDoItem.isDone ? .customStroke : .customWhite)
             .font(.system(size: 12))
     }
-    
+
     private var date: some View {
         Text(toDoItem.creationDate.slashFormatted(date: .numeric, time: .omitted))
             .foregroundStyle(.customStroke)

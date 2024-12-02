@@ -1,11 +1,10 @@
 import SwiftUI
 
-
 // MARK: - ToDoListView
 struct ToDoListView: View {
     // FIXME: - переделать на протокол
     @StateObject private var viewModel: ToDoListViewModel = ToDoListViewModel()
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,7 +16,7 @@ struct ToDoListView: View {
                         editMenuAction(item: item)
                         shareMenuAction(item: item)
                         deleteMenuAction(item: item)
-                        
+
                     } preview: {
                         preview(item: item)
                     }
@@ -36,7 +35,7 @@ struct ToDoListView: View {
             viewModel.fetch()
         })
     }
-    
+
 }
 
 // MARK: - UI Elements
@@ -64,7 +63,7 @@ extension ToDoListView {
             )
         }
     }
-    
+
     private func deleteMenuAction(item: ToDoItem) -> some View {
         Button(role: .destructive, action: {
             viewModel.deleteItem(item: item)
@@ -75,11 +74,10 @@ extension ToDoListView {
             )
         }
     }
-    
-    
+
     private var footer: some View {
         VStack {
-            ZStack{
+            ZStack {
                 Colors.customGray.swiftUIColor
                 quantityView
                     .foregroundStyle(Colors.customWhite.swiftUIColor)
@@ -101,7 +99,6 @@ extension ToDoListView {
         }
     }
 
-
     var quantityView: some View {
         if (2...4).contains(viewModel.itemsShownCount) {
             Text("\(viewModel.itemsShownCount) Задачи")
@@ -109,7 +106,7 @@ extension ToDoListView {
             Text("\(viewModel.itemsShownCount) Задач")
         }
     }
-    
+
     func preview(item: ToDoItem) -> some View {
         ToDoItemPreview(toDoItem: item)
             .padding(.vertical, 12)
