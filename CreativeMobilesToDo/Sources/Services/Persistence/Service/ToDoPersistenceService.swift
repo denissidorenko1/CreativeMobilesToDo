@@ -2,8 +2,6 @@ import Foundation
 import CoreData
 import Combine
 
-// FIXME: - сделать протокол
-
 // MARK: - ToDoDataController
 final class ToDoPersistenceService: ObservableObject {
 

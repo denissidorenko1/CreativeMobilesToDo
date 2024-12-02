@@ -2,7 +2,6 @@ import SwiftUI
 
 // MARK: - ToDoListView
 struct ToDoListView: View {
-    // FIXME: - переделать на протокол
     @StateObject private var viewModel: ToDoListViewModel = ToDoListViewModel()
 
     var body: some View {
