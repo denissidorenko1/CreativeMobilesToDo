@@ -38,6 +38,8 @@ final class TaskViewModel: ObservableObject {
 
     // MARK: - Public methods
     func saveItem() {
+        guard !title.isEmpty && !description.isEmpty else { return }
+
         if let item = item {
             let editingItem = ToDoItem(
                 id: item.id,
