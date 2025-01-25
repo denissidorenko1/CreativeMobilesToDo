@@ -15,7 +15,6 @@ struct ToDoListView: View {
                         editMenuAction(item: item)
                         shareMenuAction(item: item)
                         deleteMenuAction(item: item)
-
                     } preview: {
                         preview(item: item)
                     }

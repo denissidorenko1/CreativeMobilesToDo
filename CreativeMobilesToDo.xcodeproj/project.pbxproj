@@ -175,7 +175,6 @@
 			isa = PBXGroup;
 			children = (
 				9235A7142CF78E1200DC02D2 /* Services */,
-				9235A6D52CF20E7200DC02D2 /* UI */,
 				9235A6D62CF20E7800DC02D2 /* Resources */,
 				9235A6D42CF20E5600DC02D2 /* Screen */,
 				9235A6D22CF20E3A00DC02D2 /* Model */,
@@ -209,21 +208,12 @@
 			path = Screen;
 			sourceTree = "<group>";
 		};
-		9235A6D52CF20E7200DC02D2 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				9235A6DC2CF20F7B00DC02D2 /* Components */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		9235A6D62CF20E7800DC02D2 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				9235A7472CFCC87600DC02D2 /* Locales */,
 				9235A6F32CF244DA00DC02D2 /* Images */,
 				9235A6F22CF244D500DC02D2 /* Colors */,
-				9235A6DF2CF2165500DC02D2 /* Fonts */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -236,20 +226,6 @@
 				9235A72D2CF7BA2C00DC02D2 /* ToDoListViewModel.swift */,
 			);
 			path = ToDoList;
-			sourceTree = "<group>";
-		};
-		9235A6DC2CF20F7B00DC02D2 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		9235A6DF2CF2165500DC02D2 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Fonts;
 			sourceTree = "<group>";
 		};
 		9235A6F22CF244D500DC02D2 /* Colors */ = {

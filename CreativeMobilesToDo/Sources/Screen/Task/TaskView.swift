@@ -19,9 +19,18 @@ struct TaskView: View {
             }
             .padding(.horizontal, 20)
         }
-        .onDisappear(perform: {
-            viewModel.saveItem()
-        })
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing, content: {
+                Button("Сохранить") {
+                    viewModel.saveItem()
+                }
+            })
+        }
+        .alert(
+            LocalizedStringKey("Название или описание отсутствуют"),
+            isPresented: $viewModel.isShowingWarning,
+            actions: {
+            })
     }
 }
 

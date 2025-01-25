@@ -12,7 +12,8 @@ final class TaskViewModel: ObservableObject {
     @Published var description: String
     @Published var creationDate: Date
     @Published var item: ToDoItem?
-
+    @Published var isShowingWarning: Bool = false
+    @Published var isClosing: Bool = false
     // MARK: - Private properties
 
     // MARK: - Initializer
@@ -33,12 +34,11 @@ final class TaskViewModel: ObservableObject {
             self.creationDate = creationDate
             self.item = item
         }
-
     }
 
     // MARK: - Public methods
     func saveItem() {
-        guard !title.isEmpty && !description.isEmpty else { return }
+        guard !title.isEmpty && !description.isEmpty else { isShowingWarning = true; return }
 
         if let item = item {
             let editingItem = ToDoItem(
