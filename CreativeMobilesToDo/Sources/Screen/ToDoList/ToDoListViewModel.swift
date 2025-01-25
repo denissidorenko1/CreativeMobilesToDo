@@ -2,7 +2,6 @@ import SwiftUI
 import Combine
 
 // MARK: - ToDoListViewModel
-@MainActor
 final class ToDoListViewModel: ObservableObject {
 
     // MARK: - Dependencies
