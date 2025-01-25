@@ -861,8 +861,8 @@
 			);
 			currentVersion = 9235A7372CF870EB00DC02D2 /* ToDoDataModel.xcdatamodel */;
 			name = ToDoDataModel.xcdatamodeld;
-			path = "/Users/denis/Desktop/Xcode Projects/CreativeMobilesToDo/CreativeMobilesToDo/Sources/Services/Persistence/DataModel/ToDoDataModel.xcdatamodeld";
-			sourceTree = "<group>";
+			path = CreativeMobilesToDo/Sources/Services/Persistence/DataModel/ToDoDataModel.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
