@@ -16,7 +16,6 @@ struct ToDoItemView: View {
                     date
                 }
             }
-            .animation(.bouncy, value: item.isDone)
         }
     }
 }

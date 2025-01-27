@@ -23,6 +23,7 @@ struct ToDoListView: View {
                 .navigationDestination(isPresented: $viewModel.isToDoViewPresented) {
                     TaskView(item: viewModel.selectedTodoItem)
                 }
+                .animation(.easeInOut, value: viewModel.filteredItems)
                 footer
             }
         }
