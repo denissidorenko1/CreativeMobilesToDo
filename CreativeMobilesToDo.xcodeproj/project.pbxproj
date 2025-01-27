@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		9235A6C32CF20D6200DC02D2 /* CreativeMobilesToDoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235A6C22CF20D6200DC02D2 /* CreativeMobilesToDoApp.swift */; };
-		9235A6C52CF20D6200DC02D2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235A6C42CF20D6200DC02D2 /* ContentView.swift */; };
 		9235A6CA2CF20D6300DC02D2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9235A6C92CF20D6300DC02D2 /* Preview Assets.xcassets */; };
 		9235A6DB2CF20F5000DC02D2 /* ToDoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235A6DA2CF20F5000DC02D2 /* ToDoListView.swift */; };
 		9235A6DE2CF20F9100DC02D2 /* ToDoItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9235A6DD2CF20F9100DC02D2 /* ToDoItemView.swift */; };
@@ -56,7 +55,6 @@
 		7CAEDCB294CE679448CB3133 /* Pods_CreativeMobilesToDo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CreativeMobilesToDo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9235A6BF2CF20D6200DC02D2 /* CreativeMobilesToDo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CreativeMobilesToDo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9235A6C22CF20D6200DC02D2 /* CreativeMobilesToDoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreativeMobilesToDoApp.swift; sourceTree = "<group>"; };
-		9235A6C42CF20D6200DC02D2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9235A6C92CF20D6300DC02D2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9235A6DA2CF20F5000DC02D2 /* ToDoListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoListView.swift; sourceTree = "<group>"; };
 		9235A6DD2CF20F9100DC02D2 /* ToDoItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoItemView.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 			children = (
 				9235A6D02CF20D7200DC02D2 /* Sources */,
 				9235A6C22CF20D6200DC02D2 /* CreativeMobilesToDoApp.swift */,
-				9235A6C42CF20D6200DC02D2 /* ContentView.swift */,
 				9235A6C82CF20D6300DC02D2 /* Preview Content */,
 			);
 			path = CreativeMobilesToDo;
@@ -551,7 +548,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9235A6C52CF20D6200DC02D2 /* ContentView.swift in Sources */,
 				9235A7442CF8E10500DC02D2 /* TaskViewModel.swift in Sources */,
 				9235A7242CF7AE6A00DC02D2 /* ToDoItemNetworkItem.swift in Sources */,
 				9235A7042CF258DE00DC02D2 /* Colors.swift in Sources */,
