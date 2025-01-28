@@ -1,6 +1,6 @@
 import SwiftUI
 
-final class TaskPresenter: TaskPresenterProtocol, ObservableObject {
+final class TaskPresenter: TaskPresenterProtocol {
 
     // MARK: - Dependencies
     private let interactor: TaskInteractorProtocol
