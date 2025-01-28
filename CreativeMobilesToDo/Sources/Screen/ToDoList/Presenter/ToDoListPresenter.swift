@@ -6,6 +6,7 @@ final class ToDoListPresenter: ObservableObject {
 
     // MARK: - Dependenices
     private let interactor: ToDoListInteractor
+    private unowned var router: ToDoListRouter
 
     // MARK: - Public properties
     @Published var toDoList: [ToDoItem] = []
@@ -27,8 +28,9 @@ final class ToDoListPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initializer
-    init(interactor: ToDoListInteractor) {
+    init(interactor: ToDoListInteractor, router: ToDoListRouter) {
         self.interactor = interactor
+        self.router = router
 
         interactor.objectWillChange
             .sink { [weak self] _ in
@@ -48,6 +50,14 @@ final class ToDoListPresenter: ObservableObject {
 
     func didAppear() {
         updateList()
+    }
+
+    func didTapEdit(item: ToDoItem) {
+        router.navigateToTaskScreen(for: item)
+    }
+
+    func didTapAddTask() {
+        router.navigateToTaskScreen(for: nil)
     }
 
     // MARK: - Private methods

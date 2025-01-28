@@ -42,7 +42,7 @@ struct ToDoListView: View {
 extension ToDoListView {
     private func editMenuAction(item: ToDoItem) -> some View {
         Button(action: {
-            router.navigateToTaskScreen(for: item)
+            presenter.didTapEdit(item: item)
         }) {
             Label(
                 title: { Text("Редактировать") },
@@ -84,7 +84,7 @@ extension ToDoListView {
                 HStack {
                     Spacer()
                     Button(action: {
-                        router.navigateToTaskScreen(for: nil)
+                        presenter.didTapAddTask()
                     }, label: {
                         Images.edit.swiftUIImage
                             .frame(width: 68, height: 68)
