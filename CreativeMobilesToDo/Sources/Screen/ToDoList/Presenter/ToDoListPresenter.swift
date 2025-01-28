@@ -2,11 +2,11 @@ import SwiftUI
 import Combine
 
 // MARK: - ToDoListPresenter
-final class ToDoListPresenter: ObservableObject {
+final class ToDoListPresenter: ToDoListPresenterProtocol {
 
     // MARK: - Dependenices
-    private let interactor: ToDoListInteractor
-    private unowned var router: ToDoListRouter
+    private let interactor: ToDoListInteractorProtocol
+    private unowned var router: any ToDoListRouterProtocol
 
     // MARK: - Public properties
     @Published var toDoList: [ToDoItem] = []
@@ -28,7 +28,7 @@ final class ToDoListPresenter: ObservableObject {
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initializer
-    init(interactor: ToDoListInteractor, router: ToDoListRouter) {
+    init(interactor: ToDoListInteractorProtocol, router: ToDoListRouter) {
         self.interactor = interactor
         self.router = router
 
@@ -68,4 +68,17 @@ final class ToDoListPresenter: ObservableObject {
             }
         }
     }
+}
+
+// MARK: - ToDoListPresenterProtocol
+protocol ToDoListPresenterProtocol: ObservableObject {
+    var toDoList: [ToDoItem] { get }
+    var searchText: String { get }
+    var itemsShownCount: Int { get }
+
+    func didTapDelete(item: ToDoItem)
+    func didToggleStatus(for item: ToDoItem)
+    func didAppear()
+    func didTapEdit(item: ToDoItem)
+    func didTapAddTask()
 }

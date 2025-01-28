@@ -3,7 +3,7 @@ import CoreData
 import Combine
 
 // MARK: - ToDoDataController
-final class ToDoPersistenceService: ObservableObject {
+final class ToDoPersistenceService: ToDoPersistenceServiceProtocol {
 
     // MARK: - Public properties
     static let shared = ToDoPersistenceService()
@@ -154,4 +154,15 @@ extension ToDoPersistenceService {
             )
         }
     }
+}
+
+// MARK: - ToDoPersistenceServiceProtol
+protocol ToDoPersistenceServiceProtocol {
+    func addItem(item: ToDoItem)
+    func batchAdd(items: [ToDoItem])
+    func deleteItem(item: ToDoItem)
+    func editItem(item: ToDoItem)
+    func toggleItem(item: ToDoItem) throws
+    func fetchItems(completion: @escaping ([ToDoEntity]) -> Void) throws
+    func deleteAllItems()
 }

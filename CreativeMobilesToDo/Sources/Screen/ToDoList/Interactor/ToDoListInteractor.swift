@@ -2,7 +2,7 @@ import Foundation
 import Combine
 
 // MARK: - ToDoListInteractor
-final class ToDoListInteractor {
+final class ToDoListInteractor: ToDoListInteractorProtocol {
 
     // MARK: - Dependencies
     private let networkService: ToDoNetworkingService = ToDoNetworkingService.shared
@@ -63,4 +63,13 @@ final class ToDoListInteractor {
             }
         }
     }
+}
+
+// MARK: - ToDoListInteractor
+protocol ToDoListInteractorProtocol {
+    var objectWillChange: PassthroughSubject<Void, Never> { get }
+
+    func deleteItem(item: ToDoItem)
+    func toggleStatus(for item: ToDoItem)
+    func fetch(completion: @escaping ([ToDoItem]) -> Void)
 }

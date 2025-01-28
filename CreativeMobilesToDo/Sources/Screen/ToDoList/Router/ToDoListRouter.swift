@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - ToDoListRouter
-final class ToDoListRouter: ObservableObject {
+final class ToDoListRouter: ToDoListRouterProtocol {
 
     // MARK: - Public properties
     @Published var selectedTodoItem: ToDoItem?
@@ -19,4 +19,12 @@ final class ToDoListRouter: ObservableObject {
         isToDoViewPresented = true
     }
 
+}
+
+// MARK: - ToDoListRouterProtocol
+protocol ToDoListRouterProtocol: ObservableObject {
+    var selectedTodoItem: ToDoItem? { get set }
+    var isToDoViewPresented: Bool { get set }
+
+    func navigateToTaskScreen(for item: ToDoItem?)
 }

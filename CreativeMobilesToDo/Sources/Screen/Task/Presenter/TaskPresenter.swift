@@ -1,10 +1,10 @@
 import SwiftUI
 
-final class TaskPresenter: ObservableObject {
+final class TaskPresenter: TaskPresenterProtocol, ObservableObject {
 
     // MARK: - Dependencies
-    private let interactor: TaskInteractor
-    private unowned var router: TaskRouter
+    private let interactor: TaskInteractorProtocol
+    private unowned var router: any TaskRouterProtocol
 
     // MARK: - Public properties
     @Published var title: String
@@ -50,4 +50,14 @@ final class TaskPresenter: ObservableObject {
 
         router.dismiss()
     }
+}
+
+// MARK: - TaskPresenterProtocol
+protocol TaskPresenterProtocol: ObservableObject, AnyObject {
+    var title: String { get }
+    var description: String { get }
+    var creationDate: Date { get }
+    var item: ToDoItem? { get }
+
+    func didTapSave()
 }

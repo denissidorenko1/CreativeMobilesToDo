@@ -1,10 +1,14 @@
 import Foundation
 
 // MARK: - TaskInteractor
-final class TaskInteractor {
+final class TaskInteractor: TaskInteractorProtocol {
 
     // MARK: - Dependencies
-    private let persistenceService: ToDoPersistenceService = ToDoPersistenceService.shared
+    var persistenceService: ToDoPersistenceServiceProtocol
+
+    init(persistenceService: ToDoPersistenceServiceProtocol = ToDoPersistenceService.shared) {
+        self.persistenceService = persistenceService
+    }
 
     // MARK: - Public methods
     func saveItem(title: String, description: String, creationDate: Date, item: ToDoItem?) {
@@ -27,4 +31,9 @@ final class TaskInteractor {
             persistenceService.addItem(item: newItem)
         }
     }
+}
+
+// MARK: - TaskInteractorProtocol
+protocol TaskInteractorProtocol: AnyObject {
+    func saveItem(title: String, description: String, creationDate: Date, item: ToDoItem?)
 }
