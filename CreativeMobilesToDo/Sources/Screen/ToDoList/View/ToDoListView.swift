@@ -2,14 +2,15 @@ import SwiftUI
 
 // MARK: - ToDoListView
 struct ToDoListView: View {
-    @StateObject private var viewModel: ToDoListViewModel = ToDoListViewModel()
+    @StateObject var presenter: ToDoListPresenter
+    @StateObject var router: ToDoListRouter
 
     var body: some View {
         NavigationStack {
             VStack {
-                List(viewModel.filteredItems, id: \.title) { item in
+                List(presenter.filteredItems, id: \.title) { item in
                     ToDoItemView(item: item, onCircleTap: {
-                        viewModel.toggleStatus(for: item)
+                        presenter.didToggleStatus(for: item)
                     })
                     .contextMenu {
                         editMenuAction(item: item)
@@ -20,18 +21,18 @@ struct ToDoListView: View {
                     }
                 }
                 .navigationTitle("Задачи")
-                .navigationDestination(isPresented: $viewModel.isToDoViewPresented) {
-                    TaskView(item: viewModel.selectedTodoItem)
+                .navigationDestination(isPresented: $router.isToDoViewPresented) {
+                    TaskViewBuilder.build(with: router.selectedTodoItem)
                 }
-                .animation(.easeInOut, value: viewModel.filteredItems)
+                .animation(.easeInOut, value: presenter.filteredItems)
                 footer
             }
         }
         .listStyle(.plain)
-        .searchable(text: $viewModel.searchText, placement: .navigationBarDrawer)
+        .searchable(text: $presenter.searchText, placement: .navigationBarDrawer)
         .preferredColorScheme(.dark)
         .onAppear(perform: {
-            viewModel.fetch()
+            presenter.didAppear()
         })
     }
 
@@ -41,8 +42,7 @@ struct ToDoListView: View {
 extension ToDoListView {
     private func editMenuAction(item: ToDoItem) -> some View {
         Button(action: {
-            viewModel.selectedTodoItem = item
-            viewModel.isToDoViewPresented = true
+            router.navigateToTaskScreen(for: item)
         }) {
             Label(
                 title: { Text("Редактировать") },
@@ -65,7 +65,7 @@ extension ToDoListView {
 
     private func deleteMenuAction(item: ToDoItem) -> some View {
         Button(role: .destructive, action: {
-            viewModel.deleteItem(item: item)
+            presenter.didTapDelete(item: item)
         }) {
             Label(
                 title: { Text("Удалить") },
@@ -74,7 +74,7 @@ extension ToDoListView {
         }
     }
 
-    private var footer: some View {
+    var footer: some View {
         VStack {
             ZStack {
                 Colors.customGray.swiftUIColor
@@ -84,7 +84,7 @@ extension ToDoListView {
                 HStack {
                     Spacer()
                     Button(action: {
-                        viewModel.isToDoViewPresented = true
+                        router.navigateToTaskScreen(for: nil)
                     }, label: {
                         Images.edit.swiftUIImage
                             .frame(width: 68, height: 68)
@@ -99,10 +99,10 @@ extension ToDoListView {
     }
 
     var quantityView: some View {
-        if (2...4).contains(viewModel.itemsShownCount) {
-            Text("\(viewModel.itemsShownCount) Задачи")
+        if (2...4).contains(presenter.itemsShownCount) {
+            Text("\(presenter.itemsShownCount) Задачи")
         } else {
-            Text("\(viewModel.itemsShownCount) Задач")
+            Text("\(presenter.itemsShownCount) Задач")
         }
     }
 
@@ -117,5 +117,5 @@ extension ToDoListView {
 
 // MARK: - Preview
 #Preview {
-    ToDoListView()
+    ToDoListViewBuilder.build()
 }

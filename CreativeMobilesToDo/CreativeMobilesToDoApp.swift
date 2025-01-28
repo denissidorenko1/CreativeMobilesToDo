@@ -11,8 +11,7 @@ import SwiftUI
 struct CreativeMobilesToDoApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            ToDoListView()
+            ToDoListViewBuilder.build()
         }
     }
 }

@@ -27,7 +27,7 @@ struct ToDoItem {
     }
 }
 
-// MARK: - Hashable
+// MARK: - Hashable extension
 extension ToDoItem: Hashable {
 
 }
